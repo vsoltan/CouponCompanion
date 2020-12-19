@@ -46,15 +46,15 @@ router.post("/login", async (req, res, next) => {
         return res.status(422).send("Please supply a password");
     }
 
-    const user = await User.findOne({ username: req.body.username });
+    const userDocument = await User.findOne({ username: req.body.username });
 
-    bcrypt.compare(req.body.password, user.password, (err, result) => {
+    bcrypt.compare(req.body.password, userDocument.password, (err, result) => {
         if (err) {
             return res.send("Comparing Passwords Error: " + err.message); 
         }
         if (result) {
             let userSignature = {
-                _id: user._id
+                _id: userDocument._id
             };
             // create and assign token to current user 
             const token = jwt.sign(userSignature, process.env.JWT_SECRET, { expiresIn: "2h" });
