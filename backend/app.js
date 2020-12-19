@@ -1,10 +1,32 @@
-var express = require("express");
-var app = express(); 
-var testRoute = require("./routes/test"); 
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
 
-app.use("/", testRoute);
+const couponRoutes = require("./routes/coupons");
+const authRoutes = require("./routes/auth");
 
-app.listen(3000);
+const bodyParser = require('body-parser')
+require('dotenv').config();
+
+app.use(bodyParser.json())
+
+app.use("/auth", authRoutes);
+app.use("/coupons", couponRoutes);
+
+mongoose.connect(process.env.MONGO_URI, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+});
+
+const connection = mongoose.connection;
+
+connection.once("open", function() {
+  console.log("MongoDB database connection established successfully");
+});
+
+app.listen(process.env.PORT, () => {
+    console.log("Listening on localhost, port: " + process.env.PORT);
+});
 
 module.exports = app;
 
