@@ -9,7 +9,7 @@ const userProfileRoutes = require("./routes/userProfile");
 const bodyParser = require('body-parser')
 require('dotenv').config();
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.use("/auth", authRoutes);
 app.use("/coupons", couponRoutes);

@@ -1,7 +1,5 @@
 # Welcome to Coupon Companion!
 
-  
-
 This is a documentation of all the routes we are using for our application. This provides us with easy reference to our API and keeps our standard clean and consistent.
 
 > Note that throughout the guide we will omit host:port from the API routes.
@@ -51,16 +49,15 @@ HTTP Return Codes:
 ### CouponObject
 ```
 {
-	id 				(number): 	unique identifier for a local deal or discount. 
-	company 		(string): 	name of the merchant offering the coupon. 
-	description 	(string): 	immediately relevant information about the deal.
-	fineprint		(string): 	additional details about the deal, including availability, 
-								locations, and other restrictions. 
-	discount: 		(number):	0 by default, otherwise absolute value of price delta.			
-	discountType:	(Object): 	See discountType for additional details. 	
-	location: 		(String): 	coordinate string. 
-	website: 		(String): 	URL string to get more information from the source.
-	image: 			(?)		: 	Not sure about this yet. 
+	id              (number):   unique identifier for a local deal or discount. 
+	company         (string):   name of the merchant offering the coupon. 
+	description     (string):   immediately relevant information about the deal.
+	fineprint       (string):   additional details about the deal, including availability, 
+	                            locations, and other restrictions. 
+	discount: 		(number):   0 by default, otherwise absolute value of price delta.			
+	discountType:	(object):   See discountType for additional details. 	
+	location: 		(string):   coordinate string. 
+	website: 		(string):   URL string to get more information from the source.
 }
 ```
 #### discountType 
@@ -104,7 +101,7 @@ HTTP Return Codes:
 	firstName 		(string) 
 	lastName 		(string) 
 	username 		(string) 
-	totalSavings 	(number)? 
+	totalSavings 	(number)
 }
 ```
 **Method:**  `GET`

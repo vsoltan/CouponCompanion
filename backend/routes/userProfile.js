@@ -1,7 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
-const { isLoggedIn } = require('../middleware/verification');
 const router = express.Router();
+const { isLoggedIn } = require('../middleware/verification');
 
 router.get("/", isLoggedIn, async (req, res, next) => {
     const userId = req.user._id;
@@ -16,7 +16,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
         lastName: authenticatedUser.lastName,
         username: authenticatedUser.username
     };
-
+    
     res.status(200).send(userDocument);
 });
 

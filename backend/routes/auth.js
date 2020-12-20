@@ -5,10 +5,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
-router.get("/", (req, res, next) => {
-    res.send("hello from auth");
-});
-
 router.post("/register", (req, res, next) => {
     if (req.body.firstName === undefined) {
         return res.status(422).send("Please supply a first name");
