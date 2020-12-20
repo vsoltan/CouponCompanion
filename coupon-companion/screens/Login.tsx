@@ -3,11 +3,16 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Button, TextInput } from 'react-native-paper'
 import { AppNavigationProp } from '../App';
 import { Card } from '../components/Card';
+import { login, signup } from '../data/database';
 
 export const LoginScreen = ({ navigation }: { navigation: AppNavigationProp }) => {
+  const [first, setFirst] = useState('');
+  const [last, setLast] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confPassword, setConfPassword] = useState('');
   const [signingUp, setSigningUp] = useState(false);
+  const [missmatch, setMissmatch] = useState(false);
 
   return (
     <View style={style.container}>
@@ -18,14 +23,14 @@ export const LoginScreen = ({ navigation }: { navigation: AppNavigationProp }) =
             mode='outlined'
             style={style.input}
             label={'First Name'}
-            value={username}
-            onChangeText={(text) => setUsername(text)} />
+            value={first}
+            onChangeText={(text) => setFirst(text)} />
           <TextInput accessibilityTraits accessibilityComponentType
             mode='outlined'
             style={style.input}
             label={'Last Name'}
-            value={username}
-            onChangeText={(text) => setUsername(text)} />
+            value={last}
+            onChangeText={(text) => setLast(text)} />
         </View>}
         <TextInput accessibilityTraits accessibilityComponentType
           mode='outlined'
@@ -40,6 +45,7 @@ export const LoginScreen = ({ navigation }: { navigation: AppNavigationProp }) =
           label={'Password'}
           autoCompleteType='password'
           secureTextEntry
+          error={missmatch}
           value={password}
           onChangeText={(text) => setPassword(text)} />
         {signingUp && <TextInput accessibilityTraits accessibilityComponentType
@@ -48,21 +54,39 @@ export const LoginScreen = ({ navigation }: { navigation: AppNavigationProp }) =
           label={'Confirm Password'}
           autoCompleteType='password'
           secureTextEntry
-          value={password}
-          onChangeText={(text) => setPassword(text)} />}
+          error={missmatch}
+          value={confPassword}
+          onChangeText={(text) => setConfPassword(text)} />}
         <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
           <Button accessibilityTraits accessibilityComponentType
             mode='contained'
             style={style.button}
-            onPress={() => { navigation.navigate('Home') }}>
+            onPress={async () => {
+              await login(username, password);
+              navigation.navigate('Home');
+            }}>
             Login
-        </Button>
+          </Button>
           <Button accessibilityTraits accessibilityComponentType
             mode='contained'
             style={style.button}
-            onPress={() => (signingUp ? null : setSigningUp(true))}>
+            onPress={() => {
+              if (signingUp) {
+                if (password === confPassword && password && confPassword) {
+                  setMissmatch(false);
+                  console.log('what')
+                  if (signup(first, last, username, password)) {
+                    navigation.navigate('Home');
+                  }
+                } else {
+                  setMissmatch(true);
+                }
+              } else {
+                setSigningUp(true);
+              }
+            }}>
             Sign Up
-        </Button>
+          </Button>
         </View>
       </Card>
     </View>

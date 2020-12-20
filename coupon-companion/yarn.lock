@@ -1216,6 +1216,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@react-native-community/async-storage@~1.12.0":
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.12.1.tgz#25f821b4f6b13abe005ad67e47c6f1cee9f27b24"
+  integrity sha512-70WGaH3PKYASi4BThuEEKMkyAgE9k7VytBqmgPRx3MzJx9/MkspwqJGmn3QLCgHLIFUgF1pit2mWICbRJ3T3lg==
+  dependencies:
+    deep-assign "^3.0.0"
+
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz#07de6d4dab80ec49231de1f1fbf658b4ad39b32c"
@@ -2623,6 +2630,13 @@ expo-status-bar@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.0.3.tgz#62b4d6145680abd43ba6ecfa465f835e88bf6263"
   integrity sha512-/Orgla1nkIrfswNHbuAOTbPVq0g3+GrhoQVk7MRafY2dwrFLgXhaPExS+eN2hpmzqPv2LG5cqAZDCQUAjmZYBQ==
+
+expo-task-manager@~8.6.0:
+  version "8.6.0"
+  resolved "https://registry.yarnpkg.com/expo-task-manager/-/expo-task-manager-8.6.0.tgz#615f57904f37d0beb024f513c715a0cdc6a2b50a"
+  integrity sha512-iyspQYN97KNxTgR7MEuqALxYQgefC9f/wacrZmtDKiXfJYBhcFeFjQiUMih/UZqJSfeIrp1zX3xrGSrM0Gub/w==
+  dependencies:
+    unimodules-app-loader "~1.4.0"
 
 expo@~40.0.0:
   version "40.0.0"

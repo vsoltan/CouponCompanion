@@ -31,9 +31,9 @@ export const CouponCard: FC<{ company: string, details: string, discount: string
   
   return (
     <Card containerStyle={styles.container}>
-      <Text style={styles.company}>{props.company}</Text>
-      <Text style={styles.details}>{props.details}</Text>
-      <Text style={styles.discount}>{props.discount}</Text>
+      <Text style={styles.company} numberOfLines={1}>{props.company}</Text>
+      <Text style={styles.details} numberOfLines={2}>{props.details}</Text>
+      <Text style={styles.discount} numberOfLines={1}>{props.discount}%</Text>
     </Card>
   );
 }
