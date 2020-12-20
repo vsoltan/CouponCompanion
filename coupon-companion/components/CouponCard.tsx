@@ -37,25 +37,3 @@ export const CouponCard: FC<{ company: string, details: string, discount: string
     </Card>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: Dimensions.get('window').width * 2 / 5,
-    height: Dimensions.get('window').width * 2 / 5,
-  },
-
-  company: {
-    fontSize: 24,
-  },
-
-  details: {
-    fontSize: 18,
-  },
-
-  discount: {
-    fontSize: 50,
-    position: 'absolute',
-    bottom: 0,
-    right: 10,
-  }
-})

@@ -1,6 +1,6 @@
 // TODO: fill this out according to api
 type coupon = {
-
+  
 };
 
 const URL = '';
