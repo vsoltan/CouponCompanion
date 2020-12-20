@@ -5,8 +5,8 @@ import { Card } from './Card';
 export const CouponCard: FC<{ company: string, details: string, discount: string, color?: string, textColor?: string }> = (props) => {
   const styles = StyleSheet.create({
     container: {
-      width: Dimensions.get('window').width * 2 / 5,
-      height: Dimensions.get('window').width * 2 / 5,
+      width: Dimensions.get('window').width * 3 / 7,
+      height: Dimensions.get('window').width * 3 / 7,
       backgroundColor: props.color,
     },
   

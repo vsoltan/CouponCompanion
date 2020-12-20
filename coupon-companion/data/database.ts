@@ -6,27 +6,42 @@ export type Coupon = {
   discount: number,
 };
 
-const URL = '';
+const URL = 'localhost:3000';
 
-export const getCoupon = async (radius: number) => {
+export const getCoupons = async (radius: number) => {
   const req = `${URL}/get`;
-  const res = await fetch(req);
-  const json: Coupon[] = await res.json();
+  let json: Coupon[] = [];
+  try {
+    const res = await fetch(req);
+    json = await res.json();
+  } catch (e) {
+    console.log(e);
+  }
   return json;
 }
 
 export const saveCoupon = async (coupon: Coupon) => {
   const req = `${URL}/post`;
-  const res = await fetch(req, {
-    method: 'POST',
-    body: JSON.stringify({ coupon: coupon }),
-  });
-  return res.ok;
+  try {
+    const res = await fetch(req, {
+      method: 'POST',
+      body: JSON.stringify({ coupon: coupon }),
+    });
+    return res.ok;
+  } catch (e) {
+    console.log(e);
+  }
+  return false;
 }
 
 export const login = async (username: string, password: string) => {
   const req = `${URL}/get`;
-  const res = await fetch(req);
-  const json = await res.json();
+  let json;
+  try {
+    const res = await fetch(req);
+    json = await res.json();
+  } catch (e) {
+    console.log(e);
+  }
   return json;
 }

@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { FAB } from 'react-native-paper';
 import { AppNavigationProp } from '../App';
-import { CouponCard } from '../components/CouponCard';
+import { getCoupons } from '../data/database'
 import { CouponList } from '../components/CouponList';
 import { Coupon } from '../data/database';
 
@@ -99,9 +99,28 @@ const dummyData: Coupon[] = [
     details: 'api calls',
     discount: 24 ,
   },
+  {
+    id: '15',
+    company: 'radar.io',
+    details: 'api calls',
+    discount: 24 ,
+  },
 ]
 
 export const HomeScreen = ({ navigation }: { navigation: AppNavigationProp }) => {
+  const [coupons, setCoupons] = useState<Coupon[]>([])
+  const [refresing, setRefreshing] = useState(false);
+  
+  const getData = async () => {
+    setRefreshing(true);
+    setCoupons(await getCoupons(5));
+    setRefreshing(false);
+  };
+
+  useEffect(() => {
+    getData();
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -121,7 +140,7 @@ export const HomeScreen = ({ navigation }: { navigation: AppNavigationProp }) =>
         <Text style={styles.title}>Deals in Your Area:</Text>
       </View>
       <View style={styles.couponContainer}>
-        <CouponList data={dummyData} />
+        <CouponList data={dummyData} onRefresh={() => {getData()}} refreshing={refresing} />
       </View>
       {/* <CouponCard company='Radar.io' details='api calls' discount='20%' textColor='#59f' color='#aef' /> */}
     </View>
@@ -130,16 +149,19 @@ export const HomeScreen = ({ navigation }: { navigation: AppNavigationProp }) =>
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 15
+    paddingTop: 25,
+    paddingBottom: 5,
+    // flexGrow: 1,
+    height: '100%',
+    width: '100%',
   },
 
   topContainer: {
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginBottom: 10,
+    paddingHorizontal: 10,
   },
 
   fabContainer: {
@@ -148,6 +170,7 @@ const styles = StyleSheet.create({
 
   couponContainer: {
     width: '100%',
+    flex: 1,
     alignItems: 'center',
   },
 

@@ -4,25 +4,30 @@ import { CouponCard } from './CouponCard';
 import { Coupon } from '../data/database'
 
 // TODO: set up FlatList with database code
-export const CouponList: FC<{ data: Coupon[] }> = (props) => {
+export const CouponList: FC<{ data: Coupon[], onRefresh: () => void, refreshing: boolean}> = (props) => {
   return (
     <FlatList
       style={{
         width: '100%',
       }}
+      contentContainerStyle={{
+        flexGrow: 1,
+      }}
       columnWrapperStyle={{
         justifyContent: 'space-evenly',
       }}
       data={props.data}
+      refreshing={props.refreshing}
+      onRefresh={props.onRefresh}
       numColumns={2}
       keyExtractor={(item) => item.id}
-      renderItem={({ item, index }) => (
+      renderItem={({ item }) => (
         <View>
           <CouponCard
             company={item.company}
             details={item.details}
-            discount={'' + item.discount} 
-            color='#e3e3e3' />
+            discount={'' + item.discount}
+            color='#fff' />
         </View>
       )}
     />
